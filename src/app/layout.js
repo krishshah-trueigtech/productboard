@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import Navbar from "../components/Navbar";
+import { GlobalProvider } from "../common/context/";
+import ModalManager from "../components/ModalManager";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,9 +22,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        {children}
+        <GlobalProvider>
+          <div className="fixed inset-0 -z-10 h-full w-full bg-background">
+            <div className="absolute top-0 right-0 -z-10 h-[40vh] w-[40vw] min-w-[18rem] rounded-full bg-primary/10 blur-[100px]" />
+            <div className="absolute bottom-0 left-0 -z-10 h-[40vh] w-[40vw] min-w-[18rem] rounded-full bg-gray-300/50 blur-[100px]" />
+          </div>
+
+          <Navbar />
+
+          <main className="max-w-7xl mx-auto px-6 pt-10">{children}</main>
+
+          <ModalManager />
+        </GlobalProvider>
       </body>
     </html>
   );
