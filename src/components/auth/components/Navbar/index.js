@@ -1,5 +1,5 @@
 "use client";
-import { useGlobal } from "../../common/context/";
+import { useGlobal } from "../../../../common/context";
 
 const Navbar = () => {
   const { dispatch } = useGlobal();

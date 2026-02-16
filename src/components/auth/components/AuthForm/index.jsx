@@ -1,12 +1,12 @@
 "use client";
 import { useForm } from "react-hook-form";
-import FieldGenerator from "../../../common/FieldGenerator";
+import FieldGenerator from "../../../../common/FieldGenerator";
 
 const AuthForm = ({ fields, btnLabel, onSubmit, footerText, footerActionText, onToggle }) => {
   const { control, handleSubmit } = useForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col text-primary gap-4">
       <FieldGenerator formFields={fields} control={control} />
       
       <button 

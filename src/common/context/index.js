@@ -19,6 +19,7 @@ const globalReducer = (state, action) => {
   }
 };
 
+
 const globalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {

@@ -1,4 +1,4 @@
-import AuthModal from "../auth/AuthModal";
+import AuthModal from "../AuthModal";
 
 export const MODAL_REGISTRY = {
     "LOGIN": AuthModal,

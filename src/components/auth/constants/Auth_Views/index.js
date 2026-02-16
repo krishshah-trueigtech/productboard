@@ -1,5 +1,7 @@
 import loginFields from "../loginFields";
 import signUpFields from "../signUpFields";
+import useLoginForm from "../../hooks/useLoginForm"
+import useSignup from "../../hooks/useSignup"
 
 const AUTH_VIEWS = {
   LOGIN: {
@@ -9,6 +11,7 @@ const AUTH_VIEWS = {
     footerText: "Don't have an account?",
     footerAction: "Sign Up",
     toggleView: "OPEN_SIGNUP",
+    onSubmit: (data) => useLoginForm(data)
   },
   SIGNUP: {
     title: "Create Account",
@@ -17,6 +20,7 @@ const AUTH_VIEWS = {
     footerText: "Already have an account?",
     footerAction: "Login",
     toggleView: "OPEN_LOGIN",
+    onSubmit: (data) => useSignup(data)
   },
 };
 
