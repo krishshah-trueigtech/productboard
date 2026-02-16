@@ -1,4 +1,7 @@
 {
-    "users": [],
+    "users": [{
+        "email": "admin@gmail.com",
+        "password": "Admin@123"
+    }],
     "products":[]
 }

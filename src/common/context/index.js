@@ -18,7 +18,9 @@ const globalReducer = (state, action) => {
     case "LOGGED_IN":
       return { ...state, isLoggedin: true };
     case "LOGGED_OUT":
-      return {...state, isLoggedin: false};
+      return { ...state, isLoggedin: false };
+    case "INITIALIZE_AUTH":
+      return { ...state, isLoggedin: action.payload };
     default:
       return state;
   }
@@ -26,9 +28,11 @@ const globalReducer = (state, action) => {
 
 const globalContext = createContext();
 
-export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(globalReducer, initialState);
-
+export const GlobalProvider = ({ children, initialAuth }) => {
+  const [state, dispatch] = useReducer(globalReducer, {
+    ...initialState,
+    isLoggedin: initialAuth,
+  });
   return (
     <globalContext.Provider value={{ state, dispatch }}>
       {children}

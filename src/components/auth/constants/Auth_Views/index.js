@@ -11,7 +11,7 @@ const AUTH_VIEWS = {
     footerText: "Don't have an account?",
     footerAction: "Sign Up",
     toggleView: "OPEN_SIGNUP",
-    onSubmit: (data) => useLoginForm(data)
+    onSubmit: async(data) => await useLoginForm(data)
   },
   SIGNUP: {
     title: "Create Account",
@@ -20,7 +20,7 @@ const AUTH_VIEWS = {
     footerText: "Already have an account?",
     footerAction: "Login",
     toggleView: "OPEN_LOGIN",
-    onSubmit: (data) => useSignup(data)
+    onSubmit: async (data) =>  await useSignup(data)
   },
 };
 

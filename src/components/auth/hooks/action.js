@@ -1,18 +1,29 @@
 "use server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
-export const setCookie = async (data) => {
-  const cookie = await cookies();
-  cookie.set("user", data?.email, { maxAge: 60 * 60 });
+export const validateUser = async (credentials) => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const res = await fetch(`${baseUrl}/db.json`);
+  const db = await res.json();
+
+  const user = db.users.find(
+    (u) => u.email === credentials.email && u.password === credentials.password
+  );
+
+  if (!user) return { error: "Invalid email or password" };
+
+
+  const cookieStore = await cookies();
+  cookieStore.set("user", user.email, { 
+    maxAge: 60 * 60, 
+    path: "/",
+    httpOnly: true
+  });
+
+  return { success: true };
 };
 
-export const getCookie = async () => {
-  const cookie = await cookies();
-  return cookie.get("user")?.value || null;
-};
-
-
-export const route = async (url) => {
-  redirect(`/${url}`);
+export const logoutAction = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("user");
 };

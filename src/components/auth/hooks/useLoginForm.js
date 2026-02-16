@@ -1,12 +1,14 @@
-import { setCookie, route } from "./action";
+import { validateUser } from "./action";
 
 const useLoginForm = async (data) => {
-  if (!data) {
-    throw new Error("No data recieved in Login form");
+  const result = await validateUser(data);
+
+  if (result.error) {
+    alert(result.error);
+    return false;
   }
-  setCookie(data);
-  const url = "dashboard";
-  route(url);
+
+  return true;
 };
 
 export default useLoginForm;

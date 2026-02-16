@@ -11,6 +11,18 @@ const AuthModal = () => {
 
   if (!state.isOpen || !viewConfig) return null;
 
+  const handleAuth = async (data) => {
+    const success = await viewConfig.onSubmit(data);
+
+    if (success) {
+      dispatch({ type: "LOGGED_IN" });
+      dispatch({ type: "CLOSE_MODAL" });
+      window.location.href = "/dashboard"; 
+    } else {
+      console.error("Authentication failed");
+    }
+  };
+
   return (
     <Modal
       isOpen={state.isOpen}
@@ -27,12 +39,7 @@ const AuthModal = () => {
           onToggle={() => dispatch({ type: viewConfig.toggleView })}
           footerText={viewConfig.footerText}
           footerActionText={viewConfig.footerAction}
-          onSubmit={(data) => {
-            viewConfig.onSubmit(data);
-            dispatch({ type: "CLOSE_MODAL" })
-            dispatch({ type: "LOGGED_IN" })
-
-          }}
+          onSubmit={handleAuth} 
         />
       </div>
     </Modal>
