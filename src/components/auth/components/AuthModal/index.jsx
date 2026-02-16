@@ -30,6 +30,8 @@ const AuthModal = () => {
           onSubmit={(data) => {
             viewConfig.onSubmit(data);
             dispatch({ type: "CLOSE_MODAL" })
+            dispatch({ type: "LOGGED_IN" })
+
           }}
         />
       </div>

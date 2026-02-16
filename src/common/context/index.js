@@ -4,6 +4,7 @@ import { createContext, useContext, useReducer } from "react";
 const initialState = {
   isOpen: false,
   view: null,
+  isLoggedin: false,
 };
 
 const globalReducer = (state, action) => {
@@ -14,11 +15,14 @@ const globalReducer = (state, action) => {
       return { ...state, isOpen: true, view: "SIGNUP" };
     case "CLOSE_MODAL":
       return { ...state, isOpen: false, view: null };
+    case "LOGGED_IN":
+      return { ...state, isLoggedin: true };
+    case "LOGGED_OUT":
+      return {...state, isLoggedin: false};
     default:
       return state;
   }
 };
-
 
 const globalContext = createContext();
 

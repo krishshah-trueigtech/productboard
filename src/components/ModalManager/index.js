@@ -1,5 +1,5 @@
 "use client";
-import { useGlobal } from "../../../../common/context";
+import { useGlobal } from "../../common/context";
 import { MODAL_REGISTRY } from "../Modals";
 
 const ModalManager = () => {
