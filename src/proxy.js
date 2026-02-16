@@ -1,11 +1,15 @@
 import { NextResponse } from "next/server";
 
-export default function proxy(request) {
+export function proxy(request) {
   const cookie = request.cookies.get("user")?.value || null;
-  console.log(cookie);
-  if (cookie === null) return NextResponse.redirect(new URL("/", request.url));
+
+  if (!cookie) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: "/dashboard",
+  matcher: ["/dashboard/:path*", "/products/:path*"],
 };
