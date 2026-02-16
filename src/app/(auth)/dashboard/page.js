@@ -1,11 +1,15 @@
-const Dashboard = () => {
+import { Suspense } from "react";
+import ProductListContainer from "@/components/Dashboard/components/ProductDashBoard";
+import Loading from "@/app/loading";
+
+const DashboardPage = () => {
   return (
     <>
-      <div className="flex justify-center items-center">
-        <h1>Welcome to Product Board</h1>
-      </div>
+      <Suspense fallback={<Loading />}>
+        <ProductListContainer />
+      </Suspense>
     </>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;
